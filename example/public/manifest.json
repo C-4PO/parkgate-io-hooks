@@ -1,0 +1,8 @@
+{
+  "short_name": "parkgate-io-hooks",
+  "name": "parkgate-io-hooks",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
