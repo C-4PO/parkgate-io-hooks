@@ -29,7 +29,7 @@ The `ParkgateProvider` should be placed at the root of the application. Internal
 
 ```jsx
 // Root of your application
-import React, { Component } from 'react';
+import React from 'react';
 
 import { ParkgateProvider } from 'parkgate-io-hooks';
 
@@ -53,15 +53,15 @@ Returns configuration data of the application; used to specify initial state of 
 ### Usage
 ```jsx
 // Root of your application
-import React, { Component } from 'react'
+import React from 'react'
 
 import { useParkgateData } from 'parkgate-io-hooks'
 
-const Component = () => {
+const MyComponent = () => {
     const data = useParkgateData();
     return <p> {JSON.stringify(data)} </p>;
 }
-export default Component;
+export default MyComponent;
 ```
 __Returns__: Object (key/value data specified in application config)
 > ## useParkgateDimensions
@@ -69,11 +69,11 @@ Returns dimension properties updated on screen resize
 ### Usage
 ```jsx
 // Root of your application
-import React, { Component } from 'react';
+import React from 'react';
 
 import { useParkgateDemensions } from 'parkgate-io-hooks';
 
-const Component = () => {
+const MyComponent = () => {
     const {
         shape,
         width,
@@ -82,7 +82,7 @@ const Component = () => {
     
     return <p> Shape: {shape}, Width: {width}, Height: {height} </p>;
 }
-export default Component;
+export default MyComponent;
 ```
 ### Returns Object (Dimensions Schema)
 
@@ -97,11 +97,11 @@ Applications on the Parkgate platform can share data amongst themselves using re
 ### Usage
 ```jsx
 // Root of your application
-import React, { Component } from 'react';
+import React from 'react';
 
 import { useParkgateStore } from 'parkgate-io-hooks';
 
-const Component = () => {
+const MyComponent = () => {
     // Indexes the registered store `Count`
     // Similar API to `useState`
     const [
@@ -120,7 +120,7 @@ const Component = () => {
         </>
     );
 }
-export default Component;
+export default MyComponent;
 ```
 ### Parameters
 | Name | Type | Description |
@@ -137,11 +137,11 @@ export default Component;
 Nested applications or Modal applications can close themselves by calling the provided function. The parameter provided to this function passes a return value of the experience to the parkgate platform. This function is not effective if called in a board application instance.
 ### Usage
 ```jsx
-import React, { Component } from 'react';
+import React from 'react';
 
 import { finishParkgateProcess } from 'parkgate-io-hooks';
 
-const Component = () => {
+const MyComponent = () => {
     let computedValue = 42
 
      const closeApplication => () => {
@@ -150,7 +150,7 @@ const Component = () => {
     
     return <button onClick={closeApplication.bind(this)}>Close</button>;
 }
-export default Component;
+export default MyComponent;
 ```
 ### Parameters
 | Name | Type | Description |
