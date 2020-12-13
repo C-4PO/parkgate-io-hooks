@@ -4,10 +4,10 @@
 
 [![NPM](https://img.shields.io/npm/v/parkgate-io-hooks.svg)](https://www.npmjs.com/package/parkgate-io-hooks) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-__Parkgate IO Hooks__ is a frontend side library used from applications rendered on the **Parkgate IO Platform**. Using a React Hooks API, implementers have access to features provided by the platform. 
+__Parkgate IO Hooks__ is a frontend side library used for applications rendered on the **Parkgate IO Platform**. Using a React Hooks API, implementers have access to features provided by the platform. 
 
 ## Features
-* Get configuration data from a parkgate application with inital state of the application
+* Get initial state of application
 * Listen to changes in application window dimensions
 * Communicate with shared data accross multiple associated applications on a board
 * More features coming soon!
@@ -21,9 +21,9 @@ npm install --save parkgate-io-hooks
 ***
 
 ## Parkgate IO Provider
-The `ParkgateProvider` should be placed at the root of the application. Internaly using the _React Context API_, the provider manages the data-flow of the application. __Parkgate IO Hooks__ must be instantiated inside components nested within the `ParkgateProvider` and the same component.
+The `ParkgateProvider` should be placed at the root of the application. Internaly using the _React Context API_, the provider manages the data-flow of the application. __Parkgate IO Hooks__ must be instantiated inside components nested within the `ParkgateProvider` and not the same component.
 
-> Once an application is wrapped in the provider the application will be rendered useless outside of the Parkgate IO Platform experience. A developer testing evironment is still in development and will be posted soon. Stay tuned!
+> Once an application is wrapped in the provider, the application will be not render useless within the Parkgate IO Platform experience. A developer testing evironment is still in development and will be posted soon. Stay tuned!
 
 ### Usage
 
@@ -49,7 +49,7 @@ export default App;
 Parkgate IO features can be accessed by Parkgate IO Hooks. Hooks are only valid in components nested within the root `ParkgateProvider`. 
 
 > ## useParkgateData
-Returns configuration data of the application used to specify initial state of the application
+Returns configuration data of the application; used to specify initial state of the application
 ### Usage
 ```jsx
 // Root of your application
@@ -93,7 +93,7 @@ export default Component;
 | `height` | `number` | _Parkgate height unit representing a multiple of 90px_ | `3` (small) or `5`(large) or `7` (modal) or `null` (fullscreen)  |
 
 > ## useParkgateStore
-Applications on the Parkgate platform can share data amongst themselves using registered stores. You application can access and update the shared value using this hook. The desired store is indexed using the registered store key. It follows the same api as the _useState_
+Applications on the Parkgate platform can share data amongst themselves using registered stores. You application can access and update the shared value using this hook. The desired store is indexed using the registered store key. It follows the same api as the _useState_ hook.
 ### Usage
 ```jsx
 // Root of your application
