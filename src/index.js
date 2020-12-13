@@ -2,7 +2,6 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import Postmate from 'postmate';
 
 const Data = createContext(null);
-const Terminate = createContext(null);
 const Dimensions = createContext(null);
 const Stores = createContext([]);
 
@@ -30,10 +29,6 @@ export const ParkgateProvider = ({children}) => {
 
     const onParentSetStoreState = (partialState) => 
         setStoreState({...storeState, ...partialState});
-    
-    const finishParkgateProcess = (returnValue) => {
-        parent.emit('terminate-application', returnValue);
-    }
 
     useEffect(() => {
         const _handshake = new Postmate.Model({
@@ -49,6 +44,7 @@ export const ParkgateProvider = ({children}) => {
                 setParent(parent);
                 setData(parent.model.data);
                 setLoadState({loading: false, error: false, loaded: true});
+                window.parkgateParent = parent;
             })
             .catch(error => {
                 setLoadState({loading: false, error: true, loaded: false})
@@ -56,19 +52,17 @@ export const ParkgateProvider = ({children}) => {
     }, []);
 
     return (
-        <Terminate.Provider value={finishParkgateProcess}>
-            <Stores.Provider value={[storeState, setParentStoreState]}>
-                <Dimensions.Provider value={dimensions}>            
-                    <Data.Provider value={data}>
-                        {loadState.loading ?
-                            <h1>Loading</h1>
-                        : loadState.error ? 
-                            <h1>Loading Error Add reset options</h1>
-                        : children}
-                    </Data.Provider>
-                </Dimensions.Provider>
-            </Stores.Provider>
-        </Terminate.Provider>
+        <Stores.Provider value={[storeState, setParentStoreState]}>
+            <Dimensions.Provider value={dimensions}>            
+                <Data.Provider value={data}>
+                    {loadState.loading ?
+                        <h1>Loading</h1>
+                    : loadState.error ? 
+                        <h1>Loading Error Add reset options</h1>
+                    : children}
+                </Data.Provider>
+            </Dimensions.Provider>
+        </Stores.Provider>
     );
 };
 
@@ -98,6 +92,7 @@ export const useParkgateStore = (store) => {
 };
 
 export const finishParkgateProcess = (returnValue) => {
-    const terminate = useContext(Terminate);
-    terminate(returnValue);
+    if (window.parkgateParent) {
+        window.parkgateParent.emit('terminate-application', returnValue);
+    }
 };
