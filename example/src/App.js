@@ -1,12 +1,36 @@
-import React from 'react'
-import { useMyHook } from 'parkgate-io-hooks'
+import React from 'react';
+import {
+    ParkgateProvider,
+    useParkgateData,
+    useParkgateStore,
+    useParkgateDimensions
+} from 'parkgate-io-hooks';
+
+const Component = () => {
+    const data = useParkgateData();
+    const dimensions = useParkgateDimensions();
+    const [likes, setLikes] = useParkgateStore('likes');
+
+    const addNewLike = () => {
+        const newLikesState = [...likes, 'like'];
+        setLikes(newLikesState);
+    };
+
+    return (
+        <div>
+            <p>Data: {JSON.stringify(data)}</p>
+            <p>Dimensions: {JSON.stringify(dimensions)}</p>
+            <p>Likes Store: {JSON.stringify(likes)}</p>
+            <button type="button" onClick={addNewLike.bind(this)}> Add Like </button>
+        </div>
+    );
+};
 
 const App = () => {
-  const example = useMyHook()
   return (
-    <div>
-      {example}
-    </div>
+    <ParkgateProvider>
+      <Component />
+    </ParkgateProvider>
   )
 }
-export default App
+export default App;
