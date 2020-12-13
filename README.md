@@ -124,7 +124,7 @@ export default Component;
 ```
 ### Parameters
 | Name | Type | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | `StoreKey` | `String` | _Used the index the sprecific store registered with this application to display or modify its state_ |
 
 ### Returns Array\<_StoreValue_, _SetStoreFunction_\>
@@ -156,7 +156,7 @@ export default Component;
 ```
 ### Parameters
 | Name | Type | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | `ReturnValue` | `Any` | _The final value returned by the application instance before the closure of the application is initiated._ |
 ### Returns undefined
 
