@@ -99,7 +99,7 @@ Applications on the Parkgate platform can share data amongst themselves using re
 // Root of your application
 import React, { Component } from 'react';
 
-import { useParkgateDemensions } from 'parkgate-io-hooks';
+import { useParkgateStore } from 'parkgate-io-hooks';
 
 const Component = () => {
     // Indexes the registered store `Count`
