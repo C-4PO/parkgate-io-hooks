@@ -133,8 +133,6 @@ export default Component;
 | `0` | `Store Value` | _The value stored in the specified shared store_ | _any_ |
 | `1` | `Set Store Function` | _A function that updates the shared store state_ | Function\<any\> |
 
-***
-
 > ## finishParkgateProcess
 Nested applications or Modal applications can close themselves by calling the provided function. The parameter provided to this function passes a return value of the experience to the parkgate platform. This function is not effective if called in a board application instance.
 ### Usage
