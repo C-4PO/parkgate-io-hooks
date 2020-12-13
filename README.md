@@ -36,7 +36,7 @@ import { ParkgateProvider } from 'parkgate-io-hooks';
 const App = () => {
     return (
         <ParkgateProvider>
-            <Component />
+            <MyComponent />
         </ParkgateProvider>
     );
 };
@@ -52,7 +52,6 @@ Parkgate IO features can be accessed by Parkgate IO Hooks. Hooks are only valid 
 Returns configuration data of the application; used to specify initial state of the application
 ### Usage
 ```jsx
-// Root of your application
 import React from 'react'
 
 import { useParkgateData } from 'parkgate-io-hooks'
@@ -68,7 +67,6 @@ __Returns__: Object (key/value data specified in application config)
 Returns dimension properties updated on screen resize
 ### Usage
 ```jsx
-// Root of your application
 import React from 'react';
 
 import { useParkgateDemensions } from 'parkgate-io-hooks';
@@ -96,7 +94,6 @@ export default MyComponent;
 Applications on the Parkgate platform can share data amongst themselves using registered stores. You application can access and update the shared value using this hook. The desired store is indexed using the registered store key. It follows the same api as the _useState_ hook.
 ### Usage
 ```jsx
-// Root of your application
 import React from 'react';
 
 import { useParkgateStore } from 'parkgate-io-hooks';
