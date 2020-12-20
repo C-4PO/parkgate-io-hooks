@@ -38,10 +38,6 @@ export const ParkgateProvider = ({children}) => {
     };
 
     useEffect(() => {
-        console.log(storeState);
-    }, [storeState])
-
-    useEffect(() => {
         const _handshake = new Postmate.Model({
             title: null,
             storeConfig: {},
