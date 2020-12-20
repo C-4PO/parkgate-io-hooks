@@ -9,19 +9,19 @@ import {
 const Component = () => {
     const data = useParkgateData();
     const dimensions = useParkgateDimensions();
-    const [likes, setLikes] = useParkgateStore('likes');
+    const [cart] = useParkgateStore('cart');
 
-    const addNewLike = () => {
-        const newLikesState = [...likes, 'like'];
-        setLikes(newLikesState);
-    };
+    // const addNewLike = () => {
+    //     const newLikesState = [...likes, 'like'];
+    //     setLikes(newLikesState);
+    // };
 
     return (
         <div>
             <p>Data: {JSON.stringify(data)}</p>
             <p>Dimensions: {JSON.stringify(dimensions)}</p>
-            <p>Likes Store: {JSON.stringify(likes)}</p>
-            <button type="button" onClick={addNewLike.bind(this)}> Add Like </button>
+            <p>Cart Store: {JSON.stringify(cart)}</p>
+            {/*<button type="button" onClick={addNewLike.bind(this)}> Add Like </button>}*/}
         </div>
     );
 };

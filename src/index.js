@@ -6,6 +6,7 @@ const Dimensions = createContext(null);
 const Stores = createContext([]);
 
 export const ParkgateProvider = ({children}) => {
+    const [error, setError] = useState('');
     const [data, setData] = useState({});
     const [dimensions, setDimensions] = useState({});
     const [parent, setParent] = useState(null);
@@ -13,11 +14,16 @@ export const ParkgateProvider = ({children}) => {
     const [loadState, setLoadState] = useState({loading: true, error: false, loaded: false});
 
     const generateStoreState = (storeConfig) => {
-        const state = storeConfig.reduce((prev, store) => ({
-            ...prev,
-            [store.name]: store.initialValue,
-        }))
-        setStoreState(state);
+        try {
+            const state = storeConfig.reduce((prev, store) => ({
+                ...prev,
+                [store.name]: store.initialValue,
+            }))
+            setStoreState(state);
+        } catch (error) {
+            setError('StoreConfig missing or not formatted properly');
+            throw 'StoreConfig missing or not formatted properly';
+        }
     };
 
     const setParentStoreState = (storeKey, storeValue) =>  {
@@ -27,8 +33,13 @@ export const ParkgateProvider = ({children}) => {
         parent.emit('store-change',[storeKey, storeValue]);
     };
 
-    const onParentSetStoreState = (partialState) => 
-        setStoreState({...storeState, ...partialState});
+    const onParentSetStoreState = (partialState) => {
+        setStoreState(prevState => ({...prevState, ...partialState}));
+    };
+
+    useEffect(() => {
+        console.log(storeState);
+    }, [storeState])
 
     useEffect(() => {
         const _handshake = new Postmate.Model({
@@ -58,7 +69,7 @@ export const ParkgateProvider = ({children}) => {
                     {loadState.loading ?
                         <h1>Loading</h1>
                     : loadState.error ? 
-                        <h1>Loading Error Add reset options</h1>
+                        <h1>{error ? error: 'Loading Error'}</h1>
                     : children}
                 </Data.Provider>
             </Dimensions.Provider>
