@@ -51,6 +51,7 @@ export const ParkgateProvider = ({children}) => {
                 setParent(parent);
                 setData(parent.model.data);
                 setLoadState({loading: false, error: false, loaded: true});
+                parent.emit('loaded');
                 window.parkgateParent = parent;
             })
             .catch(error => {

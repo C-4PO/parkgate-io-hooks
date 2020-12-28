@@ -141,11 +141,11 @@ import { finishParkgateProcess } from 'parkgate-io-hooks';
 const MyComponent = () => {
     let computedValue = 42
 
-     const closeApplication => () => {
+     const closeApplication = () => {
          finishParkgateProcess(42);
      };
     
-    return <button onClick={closeApplication.bind(this)}>Close</button>;
+    return <button onClick={closeApplication}>Close</button>;
 }
 export default MyComponent;
 ```
